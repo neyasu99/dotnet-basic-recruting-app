@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using MatchDataManager.Api.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<MatchDataManagerApiContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MatchDataManagerApiContext") ?? throw new InvalidOperationException("Connection string 'MatchDataManagerApiContext' not found.")));
 
 // Add services to the container.
 
